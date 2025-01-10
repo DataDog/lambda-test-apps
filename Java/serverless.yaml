@@ -1,0 +1,30 @@
+service: ${env:SERVICE}
+
+provider:
+  name: aws
+  runtime: java21
+  timeout: 30
+  memorySize: 1024
+  stackTags:
+    DD_PRESERVE_STACK: true # this prevents your test app from being deleted every week
+  layers:
+    - ${env:TRACER_LAYER_ARN}
+    - ${env:EXTENSION_LAYER_ARN}
+
+package:
+  artifact: target/java-test-1.0.jar
+
+functions:
+  main:
+    handler: Main::handleRequest
+    environment:
+      JAVA_TOOL_OPTIONS: '-javaagent:"/opt/dd-java-agent-${env:TRACER_VERSION}-SNAPSHOT.jar"'
+
+plugins:
+  - serverless-plugin-datadog
+
+custom:
+  datadog:
+    site: datadoghq.com
+    apiKey: ${env:DD_API_KEY}
+    addExtension: false
