@@ -1,0 +1,15 @@
+# Node dependencies and Serverless directories for all runtime subdirectories
+*/node_modules/
+*/.serverless/
+
+#Development files/directories
+.DS_Store
+*.log
+.idea/
+.vscode/
+
+# Go specific
+*/bootstrap
+
+# Java specific
+*/target/
