@@ -9,7 +9,8 @@
 .vscode/
 
 # Go specific
-*/bootstrap
+Golang/src/bootstrap
+*/build/
 
 # Java specific
 */target/

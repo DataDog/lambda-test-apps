@@ -1,6 +1,6 @@
 # Config
 export SERVICE="nhulston-java-test" # used to name your Lambda function
-PROJECT_PATH="$HOME/Dev/Misc/LambdaTestApps/Java/" # path to this directory
+PROJECT_PATH="$HOME/Dev/Misc/lambda-test-apps/Java/" # path to this directory
 TRACER_PATH="$HOME/Dev/Java/dd-trace-java/"
 EXTENSION_PATH="$HOME/Dev/Rust/datadog-lambda-extension/"
 TRACER_LAYER_NAME="nhulston-dd-trace-java-test" # name of your custom tracer Lambda layer

@@ -1,0 +1,27 @@
+service: ${env:SERVICE}
+
+provider:
+  name: aws
+  runtime: provided.al2
+  timeout: 30
+  memorySize: 1024
+  stackTags:
+    DD_PRESERVE_STACK: true # this prevents your test app from being deleted every week
+  layers:
+    - ${env:EXTENSION_LAYER_ARN}
+
+package:
+  artifact: ./target/function.zip
+
+functions:
+  main:
+    handler: bootstrap
+
+plugins:
+  - serverless-plugin-datadog
+
+custom:
+  datadog:
+    site: datadoghq.com
+    apiKey: ${env:DD_API_KEY}
+    addExtension: false
